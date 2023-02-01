@@ -1,0 +1,230 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Technical Test API - Clac des Doigts"
+  },
+  "paths": {
+    "/chicken": {
+      "post": {
+        "summary": "Create a new chicken",
+        "description": "",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "weight",
+            "in": "formData",
+            "required": true,
+            "type": "integer"
+          }],
+        "responses": {
+          "201": {
+            "description": "Successfully created chicken",
+            "schema": {
+                "$ref": "#/definitions/Chicken"
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      },
+      "get": {
+        "tags": ["chicken"],
+        "summary": "Get all chickens",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Chicken"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["chicken"],
+        "summary": "Delete all chickens",
+        "description": "",
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      }
+    },
+    "/chicken/{id}": {
+      "get": {
+        "tags": ["chicken"],
+        "summary": "Get a chicken by id",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Chicken"
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Element not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["chicken"],
+        "summary": "Update chicken attributes by id",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "weight",
+            "in": "formData",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Element to patch not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["chicken"],
+        "summary": "Delete a chicken by id",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Element to delete not found"
+          }
+        }
+      }
+    },
+    "/chicken/{id}/run": {
+        "patch": {
+          "tags": ["chicken"],
+          "summary": "Make the chicken in running state and increase it's steps",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            },
+            "400": {
+              "description": "Invalid request"
+            },
+            "404": {
+              "description": "Element to patch not found"
+            }
+          }
+        }
+    }
+  },
+  "definitions": {
+    "Chicken": {
+      "type": "object",
+      "required": [
+        "name",
+        "weight"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string",
+          "format": "date"
+        },
+        "weight": {
+          "type": "number"
+        },
+        "steps": {
+          "type": "number",
+          "default": 0
+        },
+        "isRunning": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    }
+  }
+}
