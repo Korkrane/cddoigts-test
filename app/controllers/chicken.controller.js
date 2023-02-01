@@ -11,7 +11,6 @@ const {
   sendErrorResponse } = require('../utils/error');
 
 exports.create = (req, res) => {
-  console.log(req)
   try {
     if (!req.body.name || !req.body.weight)
       throw new BadRequestError("Request is invalid");
