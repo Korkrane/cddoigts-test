@@ -18,12 +18,9 @@ The following table shows an overview of the existing API routes:
 
 ## Project setup
 ```
-npm install
-```
-
-### Run
-```
-npm run start
+git clone https://github.com/Korkrane/cddoigts-test.git
+cd cddoigts-test
+./run.sh
 ```
 
 ## Test the API
